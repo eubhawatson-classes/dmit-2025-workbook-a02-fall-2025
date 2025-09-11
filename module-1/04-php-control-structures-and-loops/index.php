@@ -95,24 +95,29 @@
 
       <?php
       
-        $x = "This variable is a string now.";
+        $x = (string) "This variable is a string now.";
 
         // If we want to use a string variable later but do not have an initial value for it, we can initialise it as an empty string with empty double quotes.
         // $message = "";
 
-        if ($x === 5) { // This should be FALSE.
-          $message = "<p>X is 5.</p>";
-        } elseif ($x === 6) { // This should be FALSE.
-          $message = "<p>X is 6.</p>";
-        // } elseif (is_numeric($x)) { // This should be FALSE.
-        //   // is_numeric() -> This method returns TRUE or FALSE depending upon whether the argument passed into it is a number or not a number.
-        //   $message = "<p>X is a number.</p>";
-        } elseif ($x < 10 || $x > 12) {
-           $message = "<p>X is less than 10 or greater than 12.</p>";
-        } 
-        else {
-          $message = "<p>X is not equal to 5, equal to 6, or a number.</p>";
-        }
+        if (is_numeric($x)) {      
+          if ($x === 5) { // This should be FALSE.
+            $message = "<p>X is 5.</p>";
+          } elseif ($x === 6) { // This should be FALSE.
+            $message = "<p>X is 6.</p>";
+          // } elseif (is_numeric($x)) { // This should be FALSE.
+          //   // is_numeric() -> This method returns TRUE or FALSE depending upon whether the argument passed into it is a number or not a number.
+          //   $message = "<p>X is a number.</p>";
+          } elseif ($x < 10 || $x > 12) {
+            // If I wanted to check to see within a single condition if this value is numeric and is less than 10 or greater than 12, I could write: elseif ( is_numeric($x) && ($x < 10 || $x > 12) )
+            $message = "<p>X is less than 10 or greater than 12.</p>";
+          } 
+          else {
+            $message = "<p>X is not equal to 5, equal to 6, or a number.</p>";
+          }
+      } else {
+        $message = "<p>X is not numeric.</p>";
+      }
 
         // isset() -> This method checks to see if a variable exists, is initialised, or assigned a value. It returns TRUE or FALSE.
         if (isset($message)) {
@@ -203,16 +208,59 @@
          * 3. Some sort of change where the condition can approach FALSE; this is usually an increment (++) or a decrement (--).
          */
 
+
+        $input = 1;
+
+        // A while loop is a test-first (or pre-test) loop. This means we check the condition before hopping the loop itself.
+
+        while ($input <= 5) {
+          echo "<p>Times through the loop: $input</p>";
+          $input++;
+        }
+
       ?>
 
       <h3 class="my-3">Do/While Loop</h3>
       <p class="lead">Runs code <em>at least once</em>, then keeps looping if the condition is still <code>true</code>.</p>
 
+      <?php
+      
+        // This is a test-last (or post-test) loop. This means that if we check the condition last, the loop will always execute at least once. 
+
+        do {
+          echo "<p>Times through the loop: $input</p>";
+          $input++;
+        } while ($input <= 10);
+
+      ?>
+
       <h3 class="my-3">For Loop</h3>
       <p class="lead">Repeats code a specific number of times using a counter: <code>for (start; condition; update)</code>.</p>
 
+      <?php
+      
+        // This is also a test-first (pre-test) loop. All three of our requirements for a loop are declared on the first line.
+
+        for ($i = 0; $i < 10; $i++) {
+          echo "<p>Current counter value: $i</p>";
+        }
+
+      ?>
+
       <h3 class="my-3">For Each Loop</h3>
       <p class="lead">Loops through each item in an array using <code>foreach ($array as $item)</code>.</p>
+
+      <?php
+      
+        // For Each loops are special: They're made to work specifically with arrays. We'll use a superglobal array for this demo ($_SERVER). This array keeps tonnes of information about the server, its state, and other things related to PHP. 
+
+        // NOTE: Do not do this in production; it may contain sensitive data you do not want to expose to the user. 
+
+        foreach ($_SERVER as $key => $value) {
+          echo "<p>$key : $value</p>";
+        }
+
+      ?>
     </div>
   </section>
 </body>
