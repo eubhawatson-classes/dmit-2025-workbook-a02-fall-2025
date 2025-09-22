@@ -57,6 +57,10 @@ switch (TRUE) {
 
                 <!-- $_GET Form -->
                 <div class="col-md-6">
+
+                <!-- We're including our processing logic here so that when it echos out all of the final calculations, the user will see them at the top. -->
+                <?php include 'process.php';?>
+
                     <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="GET" class="mb-5">
                         <div class="mb-3">
                             <label for="set-length" class="form-label">How many numbers are in your data set?</label>
