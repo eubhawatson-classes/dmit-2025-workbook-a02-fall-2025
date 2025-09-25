@@ -35,16 +35,50 @@ require '../private/process-form.php';
                     <div class="mb-4">
                         <!-- If there's an error message, we'll display right by the input the user needs to fix. -->
                          <?php if ($message_name != '') echo $message_name; ?>
-                         
+                         <label for="name" class="form-label">Full Name:</label>
+                         <input type="text" id="name" name="name" placeholder="Robin Banks" class="form-control" value="<?= $name; ?>">
+                         <p class="form-text text-light">Enter your full name as it appears on your evil henchperson license or brith certificate. Pseudonyms (e.g. "The Crusher", "Brutal Brutus", or "Dave") can be added later.</p>
                     </div>
 
                     <!-- Email Input -->
+                     <div class="mb-4">
+                        <?php if ($message_email != '') echo $message_email; ?>
+                        <label for="email" class="form-label">Email Address:</label>
+                        <input type="email" id="email" name="email" placeholder="example@evilcorp.com" value="<?= $email; ?>" class="form-control">
+                        <p class="form-text text-light">Enter a valid email address that you check frequently - evil plans wait for no one.</p>
+                     </div>
 
                     <!-- Phone Input -->
+                     <div class="mb-4">
+                        <?php if ($message_phone != '') echo $message_phone; ?>
+                        <label for="phone" class="form-label">Phone Number:</label>
+                        <input type="phone" name="phone" id="phone" placeholder="123 456 7890" class="form-control" value="<?= $phone; ?>">
+                        <p class="form-text text-light">Provide a valid ten-digit number where we can reach you. Carrier pigeons are no longer accepted after the law suit.</p>
+                     </div>
 
                     <!-- Date Input (DOB) -->
+                     <div class="mb-4">
+                        <?php if ($message_dob != '') echo $message_dob; ?>
+                        <label for="dob" class="form-label">Date of Birth:</label>
+                        <input type="date" id="dob" name="dob" class="form-control" value="<?= $dob; ?>" aria-describedby="dob-help">
+                        <p class="form-text text-light" id="dob-help">Enter your date of birth. This helps us confirm you're old enough for hazardous henching.</p>
+                     </div>
 
                     <!-- Password Creation -->
+                     <div class="mb-4">
+                        <?php if ($message_password != '') echo $message_password; ?>
+                        <label for="password" class="form-label">Secret Password:</label>
+                        <input type="text" id="password" name="password" class="form-control" value="<?= $password; ?>">
+                        <p class="form-text text-light">Choose a strong password, with:</p>
+                        <ul class="form-text text-light">
+                            <li>a minimum of 8 characters</li>
+                            <li>at least one lowercase letter</li>
+                            <li>at least one uppercase letter</li>
+                            <li>at least one number</li>
+                            <li>at least one of the following characters: !@#$%^&*</li>
+                        </ul>
+                        <p class="form-text text-light">Avoid using easy-to-guess passwords, like "password123" or "evil4life".</p>
+                     </div>
 
                     <!-- Password Check -->
                 </section>
