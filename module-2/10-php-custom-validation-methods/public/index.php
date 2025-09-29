@@ -212,8 +212,32 @@ require '../private/process-form.php';
                     </fieldset>
 
                     <!-- Dropdown (How did you hear about us?) -->
+                     <div class="mb-4">
+                        <?php if ($message_referral != "") echo $message_referral; ?>
+
+                        <label for="referral" class="form-label">How did you head about us?</label>
+                        <select name="referral" id="referral" class="form-select">
+                            <option value="">-- Please Select --</option>
+                            <option value="classified-ad" <?php if (isset($referral) && $referral === "classified-ad") echo "selected"; ?>>Craigslist (Evil Jobs Section)</option>
+                            <option value="social-media" <?php if (isset($referral) && $referral === "social-media") echo "selected"; ?>>Lava Pit Showcase on TikTok</option>
+                            <option value="word-of-mouth" <?php if (isset($referral) && $referral === "word-of-mouth") echo "selected"; ?>>Referral From Another Henchperson</option>
+                            <option value="mixer" <?php if (isset($referral) && $referral === "mixer") echo "selected"; ?>>Villain Networking Mixer</option>
+                            <option value="kidnapping" <?php if (isset($referral) && $referral === "kidnapping") echo "selected"; ?>>Kidnapped By Your Recruitment Team</option>
+                            <option value="family" <?php if (isset($referral) && $referral === "family") echo "selected"; ?>>Family Tradition</option>
+                            <option value="announcement" <?php if (isset($referral) && $referral === "announcement") echo "selected"; ?>>Villain's Death Ray Announcement</option>
+                        </select>
+                     </div>
+                </section>
+
+                <section class="my-5">
+                    <h2 class="fw-light">Long Answer Question</h2>
+                    <p>At Evil Corp.&trade;, we're not just evil doers – we're evil dreamers, too.</p>
 
                     <!-- Textarea (Long Answer Question) -->
+                    <div class="mb-4">
+                        <label for="evil-plan" class="form-label">In 255 characters or fewer, describe your most diabolical plan to date:</label>
+                        <textarea name="evil-plan" id="evil-plan" class="form-control" placeholder="e.g., sharks with frickin' laser beams attached to their heads ..."><?php if ($evil_plan != "") echo $evil_plan; ?></textarea>
+                    </div>
                 </section>
 
                 <!-- Submission -->
