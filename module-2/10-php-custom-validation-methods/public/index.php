@@ -81,20 +81,135 @@ require '../private/process-form.php';
                      </div>
 
                     <!-- Password Check -->
+                     <div class="mb-4">
+                        <?php if ($message_password_check != '') echo $message_password_check; ?>
+                        <label for="password-check" class="form-label">Secret Password (Again):</label>
+                        <input type="text" id="password-check" name="password-check" class="form-control" value="<?= $password_check; ?>">
+                        <p class="form-text text-light">Re-enter your password to confirm. Even the most diabolical minds make typos sometimes.</p>
+                    </div>
                 </section>
 
                 <section class="my-5">
                     <h2 class="fw-light">Qualifications</h2>
 
                     <!-- Number Input (Years of Experience) -->
+                     <div class="mb-4">
+                        <?php if ($message_experience != "") echo $message_experience; ?>
+                        <label for="experience" class="form-label">Years of Evil Experience:</label>
+                        <input type="number" id="experience" name="experience" class="form-control" step="1" min="0" max="60" aria-describedby="experience-help" value="<?= $experience; ?>">
+                        <p id="experience-help" class="form-text">Round to the nearest whole number between 0 and 60.</p>
+                     </div>
 
-                    <!-- Datalist (Location Preference) -->
+                    <!-- 
+                        Datalist (Location Preference) 
+                     
+                        a <datalist> is a great form control when we want to provide suggestions for the user without limiting their input. It behaves like a combination of a text field and a dropdown menu: users can either choose from a list of suggested values or type in something completely custom.
+
+                        Because users can submit anything (not just values from the list), we should still validate their input the same way we would for a regular text input.
+                     -->
+
+                                         <div class="mb-4">
+                        <?php if (!empty($message_region)) echo $message_region; ?>
+
+                        <label for="region" class="form-label">Preferred Global Region for Assignments:</label>
+                        <input list="region-options" id="region" name="region" class="form-control"
+                            value="<?php echo htmlspecialchars($region ?? ''); ?>" aria-describedby="region-help">
+
+                        <datalist id="region-options">
+                            <option value="Subterranean Bunkers (Europe)">
+                            <option value="Volcano Islands (Pacific)">
+                            <option value="Abandoned Arctic Labs">
+                            <option value="Urban Roofscapes (Night Only)">
+                            <option value="Anywhere with Excellent Wi-Fi">
+                        </datalist>
+
+                        <p id="region-help" class="form-text text-light">Choose from our suggested evil deployment zones—or enter your own. We respect evil flexibility.</p>
+                    </div>
+
 
                     <!-- Radio Buttons (Department) -->
+                     <fieldset class="mb-4">
+                        <legend class="fs-5">Which department are you applying for?</legend>
+
+                        <?php if ($message_department != "") echo $message_department; ?>
+
+                        <div class="form-check">
+                            <input type="radio" id="traps" name="department" value="traps" class="form-check-input" <?php if (isset($department) && $department === "traps") echo "checked"; ?>>
+                            <label for="traps" class="form-check-label">Trap Setting</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="radio" id="doomsday" name="department" value="doomsday" class="form-check-input" <?php if (isset($department) && $department === "doomsday") echo "checked"; ?>>
+                            <label for="doomsday" class="form-check-label">Doomsday Device Maintenance</label>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input type="radio" id="monologue" name="department" value="monologue" class="form-check-input" <?php if (isset($department) && $department === "monologue") echo "checked"; ?>>
+                            <label for="monologue" class="form-check-label">Hero Monologue Intrusion</label>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input type="radio" id="it" name="department" value="it" class="form-check-input" <?php if (isset($department) && $department === "it") echo "checked"; ?>>
+                            <label for="it" class="form-check-label">IT Help Desk</label>
+                        </div>
+                     </fieldset>
 
                     <!-- Checkboxes (Training) -->
+                     <fieldset class="mb-4">
+                        <legend class="fs-5">Occupational Hazard Training (Optional)</legend>
+                        <p>Which of the following occupational hazard training courses have you completed?</p>
+
+                        <?php if ($message_training != "") echo $message_training; ?>
+
+                        <div class="form-check">
+                            <input type="checkbox" id="lava" value="lava" name="training[]" class="form-check-input" <?php if (!empty($training) && in_array("lava", $training)) echo "checked"; ?>>
+                            <label for="lava" class="form-check-label">Open Lava Pits and You</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" id="sharks" value="sharks" name="training[]" class="form-check-input" <?php if (!empty($training) && in_array("sharks", $training)) echo "checked"; ?>>
+                            <label for="sharks" class="form-check-label">Shark Tank Etiquette</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" id="lifting" value="lifting" name="training[]" class="form-check-input" <?php if (!empty($training) && in_array("lifting", $training)) echo "checked"; ?>>
+                            <label for="lifting" class="form-check-label">Advanced Hench-Lifting Techniques</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" id="buttons" value="buttons" name="training[]" class="form-check-input" <?php if (!empty($training) && in_array("buttons", $training)) echo "checked"; ?>>
+                            <label for="buttons" class="form-check-label">The Art of Not Touching Big Red Buttons</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" id="hostages" value="hostages" name="training[]" class="form-check-input" <?php if (!empty($training) && in_array("hostages", $training)) echo "checked"; ?>>
+                            <label for="hostages" class="form-check-label">Hostage Handling: Dos and Don'ts</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" id="evacuation" value="evacuation" name="training[]" class="form-check-input" <?php if (!empty($training) && in_array("evacuation", $training)) echo "checked"; ?>>
+                            <label for="evacuation" class="form-check-label">Collapsing Lair Evacuation Plans</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" id="retention" value="retention" name="training[]" class="form-check-input" <?php if (!empty($training) && in_array("retention", $training)) echo "checked"; ?>>
+                            <label for="retention" class="form-check-label">Employee Retention: Surviving the Villain's Wrath</label>
+                        </div>
+                     </fieldset>
 
                     <!-- Range Slider (Likert) -->
+                    <fieldset class="mb-4">
+                        <?php if ($message_loyalty != "") echo $message_loyalty; ?>
+
+                        <label for="loyalty" class="form-label">On a scale of 0 through 10, how loyal are you to the current Evil Overlord?</label>
+                        <input type="range" id="loyalty" name="loyalty" class="form-range" min="0" step="1" max="10" value=<?= $loyalty; ?>>
+
+                        <!-- This will let the user know what number they are choosing. It will be dynamically updated by JS (or PHP). -->
+                        <p id="loyalty-value" class="form-text text-light text-center">
+                            <span><?php echo $loyalty; ?></span>
+                        </p>
+
+                    </fieldset>
 
                     <!-- Dropdown (How did you hear about us?) -->
 

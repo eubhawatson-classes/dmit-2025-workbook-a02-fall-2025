@@ -13,7 +13,7 @@ $experience = isset($_POST['experience']) ? trim($_POST['experience']) : '';
 $region = isset($_POST['region']) ? $_POST['region'] : '';
 $department = isset($_POST['department']) ? $_POST['department'] : '';
 $training  = isset($_POST['training']) ? $_POST['training'] : []; // These are checkboxes, so this will be an array.
-$loyalty = isset($_POST['loyalty']) ? $_POST['loyalty'] : '';
+$loyalty = isset($_POST['loyalty']) ? $_POST['loyalty'] : 5;
 $referral = isset($_POST['referral']) ? $_POST['referral'] : '';
 
 // Long Answer Question
