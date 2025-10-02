@@ -97,7 +97,7 @@ require '../private/process-form.php';
                         <?php if ($message_experience != "") echo $message_experience; ?>
                         <label for="experience" class="form-label">Years of Evil Experience:</label>
                         <input type="number" id="experience" name="experience" class="form-control" step="1" min="0" max="60" aria-describedby="experience-help" value="<?= $experience; ?>">
-                        <p id="experience-help" class="form-text">Round to the nearest whole number between 0 and 60.</p>
+                        <p id="experience-help" class="form-text text-light">Round to the nearest whole number between 0 and 60.</p>
                      </div>
 
                     <!-- 

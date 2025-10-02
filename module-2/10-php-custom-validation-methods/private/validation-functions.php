@@ -75,4 +75,35 @@ function has_length_less_than($value, $max) {
     return $length < $max;
 }
 
+/**
+ * Validates that a string has exactly the specified length.
+ * 
+ * @param string $value - The value to check.
+ * @param int $required_length - The exact length required.
+ * @return BOOL  - TRUE if $value is exactly the same as $required_length characters long; FALSE otherwise. 
+ */
+function has_length_exactly($value, $required_length) {
+    return strlen($value) === $required_length;
+}
+
+/**
+ * Validates that a string container only letters (A-Z, case-insensitive) and spaces.
+ * 
+ * @param string $value - The string to inspect.
+ * @return bool - TRUE if $value contains only letters and spaces; FALSE otherwise.
+ */
+function is_letters($value) {
+    return preg_match("/^[a-zA-Z\s]*$/", $value);
+}
+
+/**
+ * Determines whether a string contains no space characters.
+ * 
+ * @param string $value - The string to inspect.
+ * @return bool - TRUE if no spaces are found; FALSE otherwise. 
+ */
+function no_spaces($value) {
+    return strpos($value, " ") === FALSE;
+}
+
 ?>
