@@ -5,8 +5,42 @@
 -- All queries have a certain order to them. This one, which you'll complete with your instructor, creates a table, defines all of its columns, and determines which data type each column will be. We also have to decide whether a column allows null data and what the primary key is. 
 
 CREATE TABLE cities (
-    
+    `cid` SMALLINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `city_name` VARCHAR(36) NOT NULL,
+    `province` ENUM('AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'ON', 'PE', 'QC', 'SK', 'NT', 'NU', 'YT') NOT NULL,
+    `population` MEDIUMINT UNSIGNED NOT NULL,
+    `is_capital` BOOLEAN NOT NULL DEFAULT FALSE,
+    `trivia` VARCHAR(255) NULL
 );
+
+/*
+
+    Integers in MariaDB are a little different than in Microsoft-flavoured databases. Instead of using a display length — ex. INT(3) for numbers up to 999 — we use discrete integer data types.
+
+    For each data type, there are signed and unsigned values. Signed values can be negative, while unsigned values start at zero and can only be positive.
+
+    TINYINT
+        - 1 byte
+        - signed: -128 to 127
+        - unsigned: 0 to 255
+    SMALLINT
+        - 2 bytes
+        - signed: -32,768 to 32,767
+        - unsiged: 0 to 65,535
+    MEDIUMINT
+        - 3 bytes
+        - signed: -8,388,608 to 8,388,607
+        - unsigned: 0 to 16,777,215
+    INT
+        - 4 bytes
+        - signed: -2,147,483,648 to 2,147,483,647
+        - unsigned: 0 to 4,294,967,295
+    BIGINT
+        - 8 bytes
+        - signed: -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+        - unsigned: 0 to 18,446,744,073,709,551,615
+
+*/
 
 /*
     In this statement:
