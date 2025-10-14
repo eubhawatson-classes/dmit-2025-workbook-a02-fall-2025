@@ -7,7 +7,7 @@
     Because these credentials are HARD CODED, this is a very dangerous file. We need to make sure that it never goes into public_html (only our data/ directory on our server).
 */
 
-define("DB_SEVER", "mysql");
+define("DB_SERVER", "mysql");
 define("DB_USER", "student");
 define("DB_PASS", "student");
 define("DB_NAME", "dmit2025");
