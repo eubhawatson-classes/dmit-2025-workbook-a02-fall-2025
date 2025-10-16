@@ -44,6 +44,6 @@ if ($connection->error) : ?>
     </tbody>
 </table>
 
-<?php endif; ?>
+<?php endif; 
 
-<?php include 'includes/footer.php'; ?>
+include 'includes/footer.php'; ?>
