@@ -2,6 +2,7 @@
 
 $title = "Filter the Data";
 include 'includes/header.php';
+include 'includes/continents-key.php';
 
 /**
  * This function builds a query string for us that helps us retain the currently selected values when the user clicks on an additional filter.
@@ -54,8 +55,6 @@ foreach ($_GET as $filter => $values) {
     $active_filters[$filter] = array_map(fn($v) => htmlspecialchars($v, ENT_QUOTES | ENT_HTML5, 'UTF-8'), $values);
 }
 
-include 'includes/filter-results.php';
-
 ?>
 
 <h2 class="display-5">Filter the Data</h2>
@@ -91,7 +90,7 @@ if (!empty($active_filters)) {
           <a href="filters.php" class="btn btn-danger">Clear Filters</a>
           </div>';
 
-    
+    include 'includes/filter-results.php';
 }
  
 ?>
