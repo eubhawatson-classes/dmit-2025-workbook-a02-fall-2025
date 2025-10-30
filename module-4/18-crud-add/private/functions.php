@@ -75,7 +75,20 @@ function generate_table() {
 }
 
 
-/* VALIDATION */
+/* DATA VALIDATION */
+
+/**
+ * This will validate our user input on the add and edit pages of our application.
+ * 
+ * @param string $city_name
+ * @param string $province
+ * @param int $population
+ * @param int|bool $capital
+ * @param string $trivia
+ * @param array $provincial_abbr
+ * 
+ * @return array - This array has three things: (bool) ['is_valid'] is the data valid?; (array) ['errors'] error messages; (array) ['data'] validated and sanitised data.
+ */
 function validate_city_input($city_name, $province, $population, $capital, $trivia, $provincial_abbr)
 {
     global $connection;
