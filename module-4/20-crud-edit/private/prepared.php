@@ -113,4 +113,22 @@ function select_city_by_id($cid) {
 
     return $result->fetch_assoc();
 }
+
+
+/**
+ * UPDATE an existing city record; used in the Edit page.
+ * 
+ * @param string $city_name
+ * @param string $province
+ * @param int $population
+ * @param int|null $is_capital
+ * @param string|null $trivia
+ * @param int $cid
+ * @return bool|mysqli_result
+ */
+function update_city($city_name, $province, $population, $is_capital, $trivia, $cid) {
+    $query = "UPDATE cities SET `city_name` = ?, `province` = ?, `population` = ?, `is_capital` = ?, `trivia` = ? WHERE `cid` = ?;";
+
+    return execute_prepared_statement($query, [$city_name, $province, $population, $is_capital, $trivia, $cid], "ssiisi");
+}
 ?>
