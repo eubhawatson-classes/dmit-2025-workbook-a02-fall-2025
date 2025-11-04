@@ -55,7 +55,7 @@
      </div>
 
      <!-- Hidden Primary Key -->
-      <input type="hidden" name="city-id" id="city-id" value="<?= htmlspecialchars($_GET['city_id'] ?? $_POST['city_id'] ?? ''); ?>">
+      <input type="hidden" name="city-id" id="city-id" value="<?= htmlspecialchars($_GET['city_id'] ?? $_POST['city-id'] ?? ''); ?>">
 
     <!-- Submit -->
      <input type="submit" id="submit" name="submit" value="Save" class="btn btn-dark btn-lg my-5">
