@@ -11,5 +11,5 @@
 <?php 
 
 // Remember to always close your connection to the database.
-
+db_disconnect($connection);
 ?>
