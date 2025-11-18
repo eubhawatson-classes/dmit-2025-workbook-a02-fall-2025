@@ -1,7 +1,9 @@
 <?php
 
 require_once '../private/authentication.php';
-// TO DO: Call login required function.
+
+// If the user is not logged in, we need to kick them out before there's any HTML output.
+require_login();
 
 $title = "Private Page (Admin)";
 $introduction = "Welcome to the admin area! This page is only accessible to authenticated users. If you've reached this page, you are successfully logged in. If you log out, you will be redirected to the home page.";

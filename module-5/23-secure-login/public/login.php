@@ -2,9 +2,11 @@
 
 require_once '../private/authentication.php';
 
-$title = "Login Page";
-$introduction = "Please log in using your provided credentials to access your account. If you enter incorrect details, you will receive an error message. Once logged in, you'll be redirected to the admin area.";
-include 'includes/header.php';
+// If the user is already logged in, they shouldn't be allowed on this page.
+if (is_logged_in()) {
+    header("Location: admin.php");
+    exit();
+}
 
 $error = "";
 
@@ -18,9 +20,28 @@ $error = "";
 
 */
 
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
+    // In the real world, we would do a lot more validation and sanitisation here.
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    if (authenticate($username, $password)) {
+        header("Location: admin.php");
+        exit();
+    } else {
+        $error = "Invalid username or password.";
+    }
+}
+
+$title = "Login Page";
+$introduction = "Please log in using your provided credentials to access your account. If you enter incorrect details, you will receive an error message. Once logged in, you'll be redirected to the admin area.";
+include 'includes/header.php';
+
 ?>
 
 <h2 class="fw-light my-3">Login Form</h2>
+
+<?php if ($error != "") echo "<p class=\"text-center text-danger\">$error</p>"; ?>
 
 <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
 
