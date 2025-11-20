@@ -36,8 +36,26 @@ include 'includes/upload.php';
  <section class="row justify-content-center my-5">
     <div class="col-md-6">
         <!-- Error Message -->
+         <?php if ($message != "") : ?>
+
+            <div class="alert alert-secondary my-3" role="alert">
+                <?= $message; ?>
+            </div>
+
+        <?php endif; ?>
 
         <!-- Preview: If there's a newly created image, we'll show a preview of it to the user. -->
+        <?php if (isset($file_name_new)) : ?>
+
+            <div class="card text-bg-dark">
+                <img src="images/thumbs/<?= $file_name_new; ?>" alt="<?= $img_description; ?>">
+                <div class="card-img-overlay">
+                    <h2 class="card-title"><?= $img_title; ?></h2>
+                    <p class="card-text"><?= $img_description; ?></p>
+                </div>
+            </div>
+
+        <?php endif; ?>
 
         <h2 class="fw-light fs-3 mb-4">Submission Form</h2>
 
