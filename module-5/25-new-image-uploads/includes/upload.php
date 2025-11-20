@@ -4,7 +4,8 @@ $message = $message ?? "";
 $img_title = $_POST['img-title'] ?? "";
 $img_description = $_POST['img-description'] ?? "";
 
-if (isset($_POST['submit']) && !empty($_FILES['img-file]']['name'])) {
+// BUG FIX: ['img-file]'] had a stray bracket.
+if (isset($_POST['submit'], $_FILES['img-file']) && !empty($_FILES['img-file']['name'])) {
 
     $file_name = $_FILES['img-file']['name'];
     $file_temp_name = $_FILES['img-file']['tmp_name'];
@@ -25,7 +26,8 @@ if (isset($_POST['submit']) && !empty($_FILES['img-file]']['name'])) {
             if ($file_size < 2000000) {
 
                 // This function will generate a unique filename for us, based upon microseconds. This helps us avoid data collisions on larger applications. It's important we do this rather than just keep a file's original name because otherwise we might run into issues like one user uploading 'doggy.jpg' and another user uploading and overwriting that file with a different 'doggy.jpg' at a later date.
-                $file_name_new = uniqid('', TRUE) . ".$fileextension";
+                // BUG FIX: $file_extension was missing an underscore.
+                $file_name_new = uniqid('', TRUE) . ".$file_extension";
                 $file_destination = "images/full/$file_name_new";
 
                 // Let's make sure the necessary directories (i.e. where we are going to store our images) actually exist and that PHP has read/write permissions.
@@ -174,6 +176,8 @@ if (isset($_POST['submit']) && !empty($_FILES['img-file]']['name'])) {
                 imagedestroy($final_image);
                 imagedestroy($thumb_img);
 
+                // TO DO: INSERT THE IMAGE DATA.
+
             } else {
                 $message .= "The file size limit is 2MB. Please upload a smaller image file.";
             }
@@ -186,6 +190,9 @@ if (isset($_POST['submit']) && !empty($_FILES['img-file]']['name'])) {
         $message .= "There was an error with your file. Please make sure it isn't corrupted and try uploading again later.";
     }
 
+} elseif (isset($_POST['submit'])) {
+    // If the form is submitted without a file chosen ...
+    $message .= "Please choose an image file before uploading.";
 }
 
 ?>
