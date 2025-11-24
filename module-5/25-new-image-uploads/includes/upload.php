@@ -176,7 +176,13 @@ if (isset($_POST['submit'], $_FILES['img-file']) && !empty($_FILES['img-file']['
                 imagedestroy($final_image);
                 imagedestroy($thumb_img);
 
-                // TO DO: INSERT THE IMAGE DATA.
+                // Finally, we need to insert all of our metadata into the database so that our gallery script can find everything that it needs to function.
+                $sql = "INSERT INTO gallery_prep (`title`, `description`, `filename`, `uploaded_on`) VALUES (?, ?, ?, NOW());";
+                $statement = $connection->prepare($sql);
+                $statement->bind_param("sss", $img_title, $img_description, $file_name_new);
+                $statement->execute();
+
+                $message = "Your image was successfully uploaded!";
 
             } else {
                 $message .= "The file size limit is 2MB. Please upload a smaller image file.";
